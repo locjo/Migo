@@ -1,5 +1,5 @@
 export interface AuthState {
-    accressToken: string | null;
+    accessToken: string | null;
     user: User | null;
     loading: boolean;
     signUp: (
@@ -8,5 +8,9 @@ export interface AuthState {
         email: string,
         firstName: string,
         lastName: string
+    ) => Promise<void>;
+    signIn: (
+        username: string, 
+        password: string
     ) => Promise<void>;
 }

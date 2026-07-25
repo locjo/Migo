@@ -4,7 +4,7 @@ import { authService } from "@/service/authService";
 import type { AuthState } from "@/types/store";
 
 export const userAuthStore = create<AuthState>((set, get) => ({
-    accressToken: null,
+    accessToken: null,
     user: null,
     loading: false,
     
@@ -21,6 +21,24 @@ export const userAuthStore = create<AuthState>((set, get) => ({
         }catch (error) {
             console.error(error);
             toast.error("Đăng ký thất bại. Vui lòng thử lại.");
+        } finally{
+            set({loading: false});
+        }
+    },
+    
+    signIn: async (username, password) => {
+        try {
+            set({loading: true});
+
+            // goi api
+            const {accessToken} = await authService.signIn(username, password);
+            set({accessToken});
+
+            toast.success("Chào mừng bạn quay lại với Migo.");
+
+        }catch (error) {
+            console.error(error);
+            toast.error("Đăng nhập thất bại. Vui lòng thử lại.");
         } finally{
             set({loading: false});
         }
