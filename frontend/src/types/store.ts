@@ -9,8 +9,12 @@ export interface AuthState {
         firstName: string,
         lastName: string
     ) => Promise<void>;
+
+    clearState: () => void;
     signIn: (
         username: string, 
         password: string
     ) => Promise<void>;
+    signOut: () => Promise<void>;
+    fetchMe: () => Promise<void>;
 }

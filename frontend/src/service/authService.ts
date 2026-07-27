@@ -27,5 +27,26 @@ export const authService = {
         {withCredentials: true}
         );
         return res.data;
+    },
+
+    signOut: async () => {
+        const res = await api.post('/auth/signout', 
+            {}, 
+            {  
+                withCredentials: true,
+            });
+        return res.data;
+    },
+
+    fetchMe: async (token?: string) => {
+    // Nếu có token truyền trực tiếp thì ưu tiên dùng ngay, không thì để Interceptor tự lấy
+    const config = token 
+        ? { headers: { Authorization: `Bearer ${token}` } } 
+        : {};
+
+    const res = await api.get('/users/me', config);
+    
+    // Nhớ return đúng object result từ Spring Boot
+    return res.data.result || res.data; 
     }
-}
+};

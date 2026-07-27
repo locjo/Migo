@@ -6,7 +6,7 @@ import { Label } from "../ui/label"
 import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import { userAuthStore } from "@/stores/useAuthStore"
+import { useAuthStore } from "@/stores/useAuthStore"
 import { useNavigate } from "react-router-dom"
 
 const signInSchema = z.object({
@@ -20,7 +20,7 @@ export function SignInForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-    const {signIn} = userAuthStore();
+    const {signIn} = useAuthStore();
     const navigate = useNavigate();
     const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<SignInFormValues>({
         resolver: zodResolver(signInSchema)

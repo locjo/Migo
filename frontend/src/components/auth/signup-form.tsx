@@ -6,7 +6,7 @@ import { Label } from "../ui/label"
 import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import { userAuthStore } from "@/stores/useAuthStore"
+import { useAuthStore } from "@/stores/useAuthStore"
 import { useNavigate } from "react-router-dom"
 
 
@@ -24,7 +24,7 @@ export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const {signUp} = userAuthStore();
+  const {signUp} = useAuthStore();
   const navigate = useNavigate();
   const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema)
@@ -128,7 +128,7 @@ export function SignupForm({
 
               <div className="text-center text-sm">
                 Bạn đã có tài khoản?{" "}
-                <a href="/login" className="underline underline-offset-4">
+                <a href="/signin" className="underline underline-offset-4">
                   Đăng nhập
                 </a>
               </div>
