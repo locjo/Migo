@@ -24,7 +24,7 @@ export const authService = {
             username,
             password
         },
-        {withCredentials: true}
+            {withCredentials: true}
         );
         return res.data;
     },
@@ -48,5 +48,11 @@ export const authService = {
     
     // Nhớ return đúng object result từ Spring Boot
     return res.data.result || res.data; 
+    },
+
+    refresh: async () => {
+        const res = await api.post("/auth/refresh", {},
+        {withCredentials: true});
+        return res.data.accessToken;
     }
 };

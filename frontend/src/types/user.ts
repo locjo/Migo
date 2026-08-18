@@ -3,9 +3,23 @@ export interface User{
     username: string;
     email: string;
     displayName: string;
-    avatar?: string;
+    avatarUrl?: string;
     bio?: string;
     phone?: string;
     createAt?: string;
     updateAt?: string;
+}
+
+export interface Friend {
+  _id: string;
+  username: string;
+  displayName: string;
+  avatarUrl?: string;
+}
+
+export interface FriendRequest {
+  id: string;
+  username: string;
+  displayName: string;
+  avatarUrl?: string;
 }
