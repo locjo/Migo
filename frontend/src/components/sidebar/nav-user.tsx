@@ -6,7 +6,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
@@ -30,9 +29,8 @@ export function NavUser({ user }: { user: User }) {
 
   return (
     <SidebarMenu>
-      <SidebarMenuItem>
+      <SidebarMenuItem  className="flex w-full items-center p-0 border-0 bg-transparent text-left outline-none cursor-pointer">
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex w-full items-center p-0 border-0 bg-transparent text-left outline-none cursor-pointer">
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
@@ -56,7 +54,7 @@ export function NavUser({ user }: { user: User }) {
               </div>
               <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
-          </DropdownMenuTrigger>
+
 
           <DropdownMenuContent
             className="min-w-56 rounded-lg"

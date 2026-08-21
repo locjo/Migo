@@ -7,13 +7,13 @@ import UserAvatar from "./UserAvatar";
 
 const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
   const { user } = useAuthStore();
-  const { activeConversationId, setActiveConversation, messages } =
+  const { activeConversationId, setActiveConversation, messages, fetchMessages } =
     useChatStore();
 
 
   if (!user) return null;
   const currentUsername = user?.username || "";
-  const currentUserId = user?._id || user?.id || "";
+  const currentUserId = user?._id || "";
 
   const otherUser = convo.participants.find((p) => {
     // Lấy ID và Username của người tham gia
@@ -27,7 +27,7 @@ const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
     return pUsername && pUsername !== currentUsername;
   });
   if (!otherUser) return null;
-  const unreadCount = convo.unreadCount?.[user._id || user.id] ?? 0;
+  const unreadCount = convo.unreadCount?.[user._id ] ?? 0;
   const lastMessage = convo.lastMessage?.content ?? "Chưa có tin nhắn nào";
 
   // 2. Chuyển đổi ngày an toàn (nếu có tin nhắn mới tạo Date, không có thì để undefined)
@@ -38,15 +38,15 @@ const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
   const handleSelectConversation = async (id: string) => {
     setActiveConversation(id);
     if (!messages[id]) {
-      // todo: fetch messages
+      await fetchMessages();
     }
   };
   return (
     <ChatCard
-      convoId={convo._id || convo.id || ""}
+      convoId={convo.id || ""}
       name={otherUser?.displayName || otherUser?.username || "Người dùng"}
       timestamp={timestamp}
-      isActive={activeConversationId === (convo._id || convo.id)}
+      isActive={activeConversationId === (convo.id)}
       onSelect={handleSelectConversation}
       unreadCount={unreadCount}
       leftSection={

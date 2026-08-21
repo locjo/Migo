@@ -12,10 +12,11 @@ export interface Participant {
 
 export interface Conversation {
   name?: string;
-  _id?: string;
   id?: string;
+  _id?: string;
   unreadCount?: Record<string, number>;
   lastMessage?: {
+    _id: string;
     content?: string;
     createdAt?: string;
   } | null;
@@ -54,3 +55,4 @@ export interface Message {
   createdAt: string;
   isOwn?: boolean;
 }
+
