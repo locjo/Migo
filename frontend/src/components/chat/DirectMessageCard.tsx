@@ -28,12 +28,9 @@ const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
   });
   if (!otherUser) return null;
   const unreadCount = convo.unreadCount?.[user._id ] ?? 0;
-  const lastMessage = convo.lastMessage?.content ?? "Chưa có tin nhắn nào";
+  const lastMessage = convo.lastMessage ?? "Chưa có tin nhắn nào";
 
-  // 2. Chuyển đổi ngày an toàn (nếu có tin nhắn mới tạo Date, không có thì để undefined)
-  const timestamp = convo.lastMessage?.createdAt
-    ? new Date(convo.lastMessage.createdAt)
-    : undefined;
+
 
   const handleSelectConversation = async (id: string) => {
     setActiveConversation(id);
@@ -45,7 +42,6 @@ const DirectMessageCard = ({ convo }: { convo: Conversation }) => {
     <ChatCard
       convoId={convo.id || ""}
       name={otherUser?.displayName || otherUser?.username || "Người dùng"}
-      timestamp={timestamp}
       isActive={activeConversationId === (convo.id)}
       onSelect={handleSelectConversation}
       unreadCount={unreadCount}

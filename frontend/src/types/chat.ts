@@ -15,11 +15,7 @@ export interface Conversation {
   id?: string;
   _id?: string;
   unreadCount?: Record<string, number>;
-  lastMessage?: {
-    _id: string;
-    content?: string;
-    createdAt?: string;
-  } | null;
+  lastMessage?: string;
   participants: Participant[];
   type: "Group" | "Direct"
 }

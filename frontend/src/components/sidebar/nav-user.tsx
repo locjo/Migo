@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
@@ -14,11 +15,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import type { User } from "@/types/user";
-import {
-  ChevronsUpDownIcon,
-  UserIcon,
-  Bell,
-} from "lucide-react";
+import { ChevronsUpDownIcon, UserIcon, Bell } from "lucide-react";
 import { Logout } from "../auth/Logout";
 
 export function NavUser({ user }: { user: User }) {
@@ -29,8 +26,10 @@ export function NavUser({ user }: { user: User }) {
 
   return (
     <SidebarMenu>
-      <SidebarMenuItem  className="flex w-full items-center p-0 border-0 bg-transparent text-left outline-none cursor-pointer">
+      <SidebarMenuItem className="items-center p-0 border-0 bg-transparent text-left outline-none cursor-pointer">
         <DropdownMenu>
+          {/* 👈 BẮT BUỘC CẦN THẺ NÀY ĐỂ KÍCH HOẠT SỰ KIỆN CLICK MỞ MENU */}
+          <DropdownMenuTrigger className="flex w-full ">
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
@@ -54,7 +53,7 @@ export function NavUser({ user }: { user: User }) {
               </div>
               <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
-
+          </DropdownMenuTrigger>
 
           <DropdownMenuContent
             className="min-w-56 rounded-lg"
@@ -86,13 +85,13 @@ export function NavUser({ user }: { user: User }) {
               </DropdownMenuLabel>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>        
+            <DropdownMenuGroup>
               <DropdownMenuItem>
                 <UserIcon className="text-muted-foreground dark:group-focus:!text-accent-foreground" />
                 Tài khoản
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell  className="text-muted-foreground dark:group-focus:!text-accent-foreground" />
+                <Bell className="text-muted-foreground dark:group-focus:!text-accent-foreground" />
                 Thông báo
               </DropdownMenuItem>
             </DropdownMenuGroup>

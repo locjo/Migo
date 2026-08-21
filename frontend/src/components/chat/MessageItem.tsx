@@ -49,7 +49,7 @@ const MessageItem = ({message, index, messages, selectedConvo, lastMessageStatus
             </span>}
 
             {/* seen/ deliverd */}
-            {message.isOwn && message._id === selectedConvo.lastMessage?._id}
+            {message.isOwn && message._id === selectedConvo.lastMessage}
                 <Badge variant="outline" 
                 className={cn("text-xs px-1.5 py-0.5 h-4 border-0", lastMessageStatus === "seen" ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground")}></Badge>
         </div>
