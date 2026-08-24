@@ -2,7 +2,6 @@
 
 export interface Participant {
   userId: string | undefined;
-  _id?: string;
   id?: string;
   displayName?: string;
   username?: string;
@@ -13,7 +12,6 @@ export interface Participant {
 export interface Conversation {
   name?: string;
   id?: string;
-  _id?: string;
   unreadCount?: Record<string, number>;
   lastMessage?: string;
   participants: Participant[];
@@ -21,17 +19,17 @@ export interface Conversation {
 }
 
 export interface SeenUser {
-  _id: string;
+  id: string;
   displayName?: string;
   avatarUrl?: string | null;
 }
 
 export interface LastMessage {
-  _id: string;
+  id: string;
   content: string;
   createdAt: string;
   sender: {
-    _id: string;
+    id: string;
     displayName: string;
     avatarUrl?: string | null;
   };
@@ -42,7 +40,7 @@ export interface ConversationResponse {
 }
 
 export interface Message {
-  _id: string;
+  id: string;
   conversationId: string;
   senderId: string;
   content: string | null;

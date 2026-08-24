@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
@@ -28,31 +27,26 @@ export function NavUser({ user }: { user: User }) {
     <SidebarMenu>
       <SidebarMenuItem className="items-center p-0 border-0 bg-transparent text-left outline-none cursor-pointer">
         <DropdownMenu>
-          {/* 👈 BẮT BUỘC CẦN THẺ NÀY ĐỂ KÍCH HOẠT SỰ KIỆN CLICK MỞ MENU */}
-          <DropdownMenuTrigger className="flex w-full ">
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <Avatar className="size-8 rounded-lg">
-                <AvatarImage
-                  src={user.avatarUrl}
-                  alt={user.displayName || user.username}
-                />
-                <AvatarFallback className="rounded-lg">
-                  {userInitials}
-                </AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">
-                  {user.displayName || user.username}
-                </span>
-                <span className="truncate text-xs text-muted-foreground">
-                  {user.username}
-                </span>
-              </div>
-              <ChevronsUpDownIcon className="ml-auto size-4" />
-            </SidebarMenuButton>
+          {/* DropdownMenuTrigger đóng vai trò là button bấm mở menu */}
+          <DropdownMenuTrigger className="flex w-full items-center gap-2 rounded-lg p-2 text-left text-sm outline-none hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground transition-colors">
+            <Avatar className="size-8 rounded-lg">
+              <AvatarImage
+                src={user.avatarUrl}
+                alt={user.displayName || user.username}
+              />
+              <AvatarFallback className="rounded-lg">
+                {userInitials}
+              </AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-medium">
+                {user.displayName || user.username}
+              </span>
+              <span className="truncate text-xs text-muted-foreground">
+                {user.username}
+              </span>
+            </div>
+            <ChevronsUpDownIcon className="ml-auto size-4" />
           </DropdownMenuTrigger>
 
           <DropdownMenuContent

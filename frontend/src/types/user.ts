@@ -1,5 +1,5 @@
 export interface User{
-    _id: string;
+    id: string;
     username: string;
     email: string;
     displayName: string;
@@ -11,7 +11,7 @@ export interface User{
 }
 
 export interface Friend {
-  _id: string;
+  id: string;
   username: string;
   displayName: string;
   avatarUrl?: string;
